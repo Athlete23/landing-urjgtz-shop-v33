@@ -220,6 +220,16 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(100%);
+      transition: all 0.4s ease-in-out;
+    }
+
+    .sticky-footer-wrap.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
     }
 
     .sticky-action-btn {
@@ -1003,6 +1013,22 @@
   <div class="sticky-footer-wrap">
     <a href="https://vk.com/app6013442_-223161346?form_id=5#form_id=5" class="sticky-action-btn">Получить по акции</a>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var stickyBtn = document.querySelector('.sticky-footer-wrap');
+      if (stickyBtn) {
+        window.addEventListener("scroll", function () {
+          var scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+          if (scrollPercent >= 30) {
+            stickyBtn.classList.add('visible');
+          } else {
+            stickyBtn.classList.remove('visible');
+          }
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
